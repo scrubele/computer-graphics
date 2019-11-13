@@ -1,8 +1,9 @@
 # Computer graphics course: labs
-<b> Unity games: </b>
-<i> - car game branch </i>
-<i> - 2048  </i>
+
+<b> Unity games:</b>
+   * [Cars](https://github.com/scrubele/computer-graphics/tree/car-game)
+   * 2048  
 
 <b> Unreal Engine games: </b>
-<i>- Escape the room</i>
+  * Escape the room
 

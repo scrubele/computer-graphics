@@ -1,24 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public class FieldBackground : MonoBehaviour
 {
-    [SerializeField]
-    public GameConfig _config;
-    private IconfigProvider _configProvider;
+    [FormerlySerializedAs("_config")] [SerializeField] public GameConfig config;
 
-    public Cell BackgroundCellPrefab;
-    
-    public GameConfig Config => _config;
+    private IConfigProvider _configProvider;
 
-    public void Awake(){
-        _configProvider = GetComponentInParent<IconfigProvider>();
-        for (int x=0; x<Config.FieldSize; x++){
-            for (int y=0; y< Config.FieldSize; y++ ){
-                var cell = Instantiate(BackgroundCellPrefab, transform);
-                cell.Position = new Point(x,y);
-            }
+    [FormerlySerializedAs("BackgroundCellPrefab")] public Cell backgroundCellPrefab;
+    private const int Offset = 0;
+
+    private GameConfig Config => config;
+
+    public void Awake()
+    {
+        _configProvider = GetComponentInParent<IConfigProvider>();
+        for (var x = 0; x < Config.fieldSize; x++)
+        for (var y = Offset; y < Config.fieldSize + Offset; y++)
+        {
+            var cell = Instantiate(backgroundCellPrefab, transform);
+            cell.position = new Point(x, y);
         }
     }
-   }
+}
